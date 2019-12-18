@@ -6,13 +6,13 @@ import logging
 
 
 class ImmigrationData:
-    base_url = 'https://trac.syr.edu/phptools/immigration/court_backlog/state.php?isbacklog=1&stat=count&fy={}&charge=imm'
+    base_url = r'https://trac.syr.edu/phptools/immigration/court_backlog/state.php?isbacklog=1&stat=count&fy={}&charge=imm'
     data_dir = './db'
-    imm_dir = '/imm_data'
 
-    def __init__(self, url=base_url, data_dir=data_dir, imm_dir=imm_dir):
+    def __init__(self, url=base_url, data_dir=data_dir, refresh: bool = True):
         self.name = self.__class__.__name__
         self.filenames = None
+        self.dir = data_dir + '/imm_data'
 
         # initialize logfile
         timestamp = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
@@ -23,15 +23,26 @@ class ImmigrationData:
         logging.basicConfig(filename=root_log_path+log_file, level=logging.DEBUG)
 
         # initialize db directory
-        if not os.path.isdir(data_dir+imm_dir):
-            os.makedirs(data_dir+imm_dir)
+        if not os.path.isdir(self.dir):
+            os.makedirs(self.dir)
 
-        self.filenames = self.download(url, data_dir + imm_dir)
+        # refresh data if needed
+        if refresh:
+            self.filenames = self.download(url, self.dir)
+        else:
+            self.filenames = [os.path.join(self.dir, file)
+                              for file in os.listdir(self.dir)
+                              if os.path.isfile(os.path.join(self.dir, file))]
+
+        # convert data to df
         self.df = self.data_to_df(self.filenames)
-
         filename = 'imm_backlog.csv'
-        target = data_dir + imm_dir + '/{}'.format(filename)
+        target = data_dir + '/{}'.format(filename)
+
+        # output
         self.df.to_csv(target, encoding='utf8', index=False)
+        self.df.to_pickle(target.replace('csv', 'pkl'))
+
         logging.info("Completed Ingestion at {}.".format(datetime.datetime.now()))
 
     @staticmethod
@@ -59,16 +70,19 @@ class ImmigrationData:
 
 
     @staticmethod
-    def data_to_df(data_locations, allowed_filetypes: list = None):
+    def data_to_df(data_locations, missing_values: list = None, allowed_filetypes: list = None):
         """
         Performs union on flat data at data_locations, if data is in allowed_filetypes.
         :param data_locations: str or list of data locations, ie ['./file1.csv', './file2.csv'].
-        :param allowed_filetypes: list of filetype extensions, ie ['xlsx', 'csv']
+        :param missing_values: list of na values to nullify, ie ["n/a", "na", "--", '*']
+        :param allowed_filetypes: list of filetype extensions, ie ['xlsx', 'csv'].
         :return: pandas dataframe concatenated objects
         """
         logging.info("Only CSV supported.")
         if allowed_filetypes is None:
             allowed_filetypes = ['csv']
+        if missing_values is None:
+            missing_values = ["n/a", "na", "--", '*']
 
         dataframe_list = []
 
@@ -80,7 +94,7 @@ class ImmigrationData:
             if os.path.isfile(file):
                 if file.split('.')[-1] in allowed_filetypes:
                     try:
-                        df = pd.read_csv(file, error_bad_lines=False, warn_bad_lines=True)
+                        df = pd.read_csv(file, error_bad_lines=False, warn_bad_lines=True, na_values=missing_values)
                         dataframe_list.append(df)
                     except pd.io.common.CParserError:
                         print("Some data rows couldn't be parsed.")
