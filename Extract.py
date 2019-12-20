@@ -1,8 +1,11 @@
 import pandas as pd
 import requests
 import os
+import json
 import datetime
 import logging
+import datadotworld as dw
+import datapackage
 
 
 class ImmigrationData:
@@ -20,7 +23,11 @@ class ImmigrationData:
         log_file = '/{}_{}.log'.format(self.name, timestamp)
         if not os.path.isdir(root_log_path):
             os.mkdir(root_log_path)
+        # initialize logger and std out handler
         logging.basicConfig(filename=root_log_path+log_file, level=logging.DEBUG)
+        if logging.StreamHandler not in [type(handler) for handler in logging.getLogger().handlers]:
+            logging.getLogger().addHandler(logging.StreamHandler())
+        logging.info("Logging Started: {}".format(log_file))
 
         # initialize db directory
         if not os.path.isdir(self.dir):
@@ -97,9 +104,66 @@ class ImmigrationData:
                         df = pd.read_csv(file, error_bad_lines=False, warn_bad_lines=True, na_values=missing_values)
                         dataframe_list.append(df)
                     except pd.io.common.CParserError:
-                        print("Some data rows couldn't be parsed.")
+                        logging.warning("Some data rows couldn't be parsed.")
         return pd.concat(dataframe_list)
 
 
 class DataDotWorld:
-    pass
+    def __init__(self, dataset='dhs/immigration-statistics-2000', user_id=None):
+        self.name = self.__class__.__name__
+
+        # initialize logfile
+        timestamp = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+        root_log_path = './log'
+        log_file = '/{}_{}.log'.format(self.name, timestamp)
+        if not os.path.isdir(root_log_path):
+            os.mkdir(root_log_path)
+        # initialize logger and std out handler
+        logging.basicConfig(filename=root_log_path+log_file, level=logging.DEBUG)
+        if logging.StreamHandler not in [type(handler) for handler in logging.getLogger().handlers]:
+            logging.getLogger().addHandler(logging.StreamHandler())
+        logging.info("Logging Started: {}".format(log_file))
+
+        # init ddw api if necessary
+        if user_id is not None:
+            rd_tkn = self.get_token(user_id)
+            self.export_token(rd_tkn)
+
+        # import dataset
+        self.data_dir = os.path.join(os.path.expanduser('~'), '.dw/cache', dataset)
+        try:
+            self.dataset = dw.load_dataset(dataset)
+        except datapackage.exceptions.DataPackageException as e:
+            logging.debug(e)
+            logging.warning("Unable to parse JSON, attempting to fix encoding.")
+            self.fix_encoding()
+            self.dataset = dw.load_dataset(dataset)
+            logging.warning("JSON Repair Completed.")
+
+    @staticmethod
+    def configure():
+        os.system("dw configure")
+
+    @staticmethod
+    def export_token(token):
+        """
+        Linux-only method to export token.
+        :param token:
+        :return:
+        """
+        os.system("export DW_AUTH_TOKEN = {}".format(token))
+
+    @staticmethod
+    def get_token(user_id):
+        with open('./db/udata.json') as json_data:
+            data = json.load(json_data)[user_id]
+        return [token['read_tkn'] for token in data['tokens'] if token['site'] == 'data.world'].pop()
+
+    def fix_encoding(self, datapackage_loc=None):
+        if datapackage_loc is None:
+            datapackage_loc = os.path.join(self.data_dir, 'latest', 'datapackage.json')
+        # decode json
+        data = json.load(open(datapackage_loc, "r", encoding='utf-8'))
+        with open(datapackage_loc, "w") as file_write:
+            # write json back into file with standard encoding
+            json.dump(data, file_write)
