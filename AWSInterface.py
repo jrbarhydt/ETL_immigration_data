@@ -257,7 +257,10 @@ class AWSHandler:
         df_name = dataframe.name
 
         if html_name is None:
-            html_name = './{}.html'.format(df_name)
+            html_dir = './html'
+            if not os.path.isdir(html_dir):
+                os.mkdir(html_dir)
+            html_name = html_dir + '/{}.html'.format(df_name)
 
         if desired_columns is None:
             dataframe.to_html(html_name,
