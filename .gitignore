@@ -130,7 +130,7 @@ dmypy.json
 # Pyre type checker
 .pyre/
 # Local DB
-/db/imm_data/*.*
+db/imm_data/*.*
 .idea/.gitignore
 .idea/ETL_immigration_data.iml
 .idea/inspectionProfiles/
@@ -141,5 +141,5 @@ html/
 testing_ground.py
 db/udata.json
 
-!/log/
+log/
 db/imm_backlog.pkl
