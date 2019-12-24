@@ -1,52 +1,52 @@
-,State,Pending Cases,year
-1,California,43923,2001
-2,New York,21609,2001
-3,Texas,15786,2001
-4,Florida,15432,2001
-5,Illinois,4382,2001
-6,Massachusetts,3478,2001
-7,Michigan,3339,2001
-8,New Jersey,2724,2001
-9,Virginia,2427,2001
-10,Pennsylvania,2048,2001
-11,Georgia,1607,2001
-12,Arizona,1476,2001
-13,Maryland,1463,2001
-14,Colorado,1416,2001
-15,Nebraska,1410,2001
-16,Washington,1121,2001
-17,Minnesota,1011,2001
-18,Tennessee,934,2001
-19,Connecticut,740,2001
-20,Puerto Rico,682,2001
-21,Nevada,475,2001
-22,Ohio,436,2001
-23,Missouri,426,2001
-24,Louisiana,210,2001
-25,Oregon,204,2001
-26,Guam,143,2001
-27,Hawaii,93,2001
-28,Utah,18,2001
-29,Mississippi,*,2001
-30,Montana,*,2001
-31,New Hampshire,*,2001
-32,North Dakota,*,2001
-33,Oklahoma,*,2001
-34,Rhode Island,*,2001
-35,Alabama,*,2001
-36,South Carolina,*,2001
-37,Alaska,*,2001
-38,South Dakota,*,2001
-39,Arkansas,*,2001
-40,US Virgin Islands,*,2001
-41,Delaware,*,2001
-42,Vermont,*,2001
-43,District of Columbia,*,2001
-44,West Virginia,*,2001
-45,Idaho,*,2001
-46,Wisconsin,*,2001
-47,Indiana,*,2001
-48,Wyoming,*,2001
-49,Iowa,*,2001
-50,Kansas,*,2001
-51,Maine,*,2001
+State,Pending Cases,year
+California,43923,2001
+New York,21609,2001
+Texas,15786,2001
+Florida,15432,2001
+Illinois,4382,2001
+Massachusetts,3478,2001
+Michigan,3339,2001
+New Jersey,2724,2001
+Virginia,2427,2001
+Pennsylvania,2048,2001
+Georgia,1607,2001
+Arizona,1476,2001
+Maryland,1463,2001
+Colorado,1416,2001
+Nebraska,1410,2001
+Washington,1121,2001
+Minnesota,1011,2001
+Tennessee,934,2001
+Connecticut,740,2001
+Puerto Rico,682,2001
+Nevada,475,2001
+Ohio,436,2001
+Missouri,426,2001
+Louisiana,210,2001
+Oregon,204,2001
+Guam,143,2001
+Hawaii,93,2001
+Utah,18,2001
+District of Columbia,*,2001
+West Virginia,*,2001
+Idaho,*,2001
+Wisconsin,*,2001
+Indiana,*,2001
+Wyoming,*,2001
+Iowa,*,2001
+Kansas,*,2001
+Maine,*,2001
+Mississippi,*,2001
+Montana,*,2001
+New Hampshire,*,2001
+North Dakota,*,2001
+Oklahoma,*,2001
+Rhode Island,*,2001
+Alabama,*,2001
+South Carolina,*,2001
+Alaska,*,2001
+South Dakota,*,2001
+Arkansas,*,2001
+US Virgin Islands,*,2001
+Delaware,*,2001
+Vermont,*,2001

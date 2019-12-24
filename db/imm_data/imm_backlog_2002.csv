@@ -1,52 +1,52 @@
-,State,Pending Cases,year
-1,California,54014,2002
-2,Florida,24141,2002
-3,New York,21832,2002
-4,Texas,10902,2002
-5,Massachusetts,4245,2002
-6,Illinois,3373,2002
-7,Michigan,3350,2002
-8,New Jersey,3129,2002
-9,Pennsylvania,2553,2002
-10,Virginia,2321,2002
-11,Arizona,1777,2002
-12,Maryland,1686,2002
-13,Colorado,1675,2002
-14,Georgia,1649,2002
-15,Nebraska,1256,2002
-16,Ohio,1161,2002
-17,Washington,1082,2002
-18,Tennessee,1060,2002
-19,Minnesota,1048,2002
-20,Connecticut,763,2002
-21,Missouri,721,2002
-22,Nevada,631,2002
-23,Louisiana,291,2002
-24,Puerto Rico,278,2002
-25,Oregon,261,2002
-26,Utah,93,2002
-27,Guam,62,2002
-28,Hawaii,51,2002
-29,District of Columbia,*,2002
-30,West Virginia,*,2002
-31,Idaho,*,2002
-32,Wisconsin,*,2002
-33,Indiana,*,2002
-34,Wyoming,*,2002
-35,Iowa,*,2002
-36,Kansas,*,2002
-37,Maine,*,2002
-38,Mississippi,*,2002
-39,Montana,*,2002
-40,New Hampshire,*,2002
-41,North Dakota,*,2002
-42,Oklahoma,*,2002
-43,Rhode Island,*,2002
-44,Alabama,*,2002
-45,South Carolina,*,2002
-46,Alaska,*,2002
-47,South Dakota,*,2002
-48,Arkansas,*,2002
-49,US Virgin Islands,*,2002
-50,Delaware,*,2002
-51,Vermont,*,2002
+State,Pending Cases,year
+California,54014,2002
+Florida,24141,2002
+New York,21832,2002
+Texas,10902,2002
+Massachusetts,4245,2002
+Illinois,3373,2002
+Michigan,3350,2002
+New Jersey,3129,2002
+Pennsylvania,2553,2002
+Virginia,2321,2002
+Arizona,1777,2002
+Maryland,1686,2002
+Colorado,1675,2002
+Georgia,1649,2002
+Nebraska,1256,2002
+Ohio,1161,2002
+Washington,1082,2002
+Tennessee,1060,2002
+Minnesota,1048,2002
+Connecticut,763,2002
+Missouri,721,2002
+Nevada,631,2002
+Louisiana,291,2002
+Puerto Rico,278,2002
+Oregon,261,2002
+Utah,93,2002
+Guam,62,2002
+Hawaii,51,2002
+Kansas,*,2002
+Maine,*,2002
+Mississippi,*,2002
+Montana,*,2002
+New Hampshire,*,2002
+North Dakota,*,2002
+Oklahoma,*,2002
+Rhode Island,*,2002
+Alabama,*,2002
+South Carolina,*,2002
+Alaska,*,2002
+South Dakota,*,2002
+Arkansas,*,2002
+US Virgin Islands,*,2002
+Delaware,*,2002
+Vermont,*,2002
+District of Columbia,*,2002
+West Virginia,*,2002
+Idaho,*,2002
+Wisconsin,*,2002
+Indiana,*,2002
+Wyoming,*,2002
+Iowa,*,2002

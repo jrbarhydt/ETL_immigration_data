@@ -1,52 +1,52 @@
-,State,Pending Cases,year
-1,California,49765,2003
-2,Florida,25027,2003
-3,New York,20069,2003
-4,Texas,10578,2003
-5,Massachusetts,5097,2003
-6,Pennsylvania,4112,2003
-7,Illinois,3946,2003
-8,New Jersey,3414,2003
-9,Arizona,2982,2003
-10,Michigan,2902,2003
-11,Maryland,2541,2003
-12,Ohio,2522,2003
-13,Georgia,2362,2003
-14,Colorado,2287,2003
-15,Virginia,2220,2003
-16,Tennessee,1604,2003
-17,Nebraska,1460,2003
-18,Missouri,1117,2003
-19,Minnesota,1084,2003
-20,Washington,958,2003
-21,Nevada,932,2003
-22,Connecticut,748,2003
-23,Puerto Rico,430,2003
-24,Oregon,318,2003
-25,Louisiana,293,2003
-26,Utah,277,2003
-27,Hawaii,95,2003
-28,Guam,18,2003
-29,North Dakota,*,2003
-30,Oklahoma,*,2003
-31,Rhode Island,*,2003
-32,Alabama,*,2003
-33,South Carolina,*,2003
-34,Alaska,*,2003
-35,South Dakota,*,2003
-36,Arkansas,*,2003
-37,US Virgin Islands,*,2003
-38,Delaware,*,2003
-39,Vermont,*,2003
-40,District of Columbia,*,2003
-41,West Virginia,*,2003
-42,Idaho,*,2003
-43,Wisconsin,*,2003
-44,Indiana,*,2003
-45,Wyoming,*,2003
-46,Iowa,*,2003
-47,Kansas,*,2003
-48,Maine,*,2003
-49,Mississippi,*,2003
-50,Montana,*,2003
-51,New Hampshire,*,2003
+State,Pending Cases,year
+California,49765,2003
+Florida,25027,2003
+New York,20069,2003
+Texas,10578,2003
+Massachusetts,5097,2003
+Pennsylvania,4112,2003
+Illinois,3946,2003
+New Jersey,3414,2003
+Arizona,2982,2003
+Michigan,2902,2003
+Maryland,2541,2003
+Ohio,2522,2003
+Georgia,2362,2003
+Colorado,2287,2003
+Virginia,2220,2003
+Tennessee,1604,2003
+Nebraska,1460,2003
+Missouri,1117,2003
+Minnesota,1084,2003
+Washington,958,2003
+Nevada,932,2003
+Connecticut,748,2003
+Puerto Rico,430,2003
+Oregon,318,2003
+Louisiana,293,2003
+Utah,277,2003
+Hawaii,95,2003
+Guam,18,2003
+Kansas,*,2003
+Maine,*,2003
+Mississippi,*,2003
+Montana,*,2003
+New Hampshire,*,2003
+North Dakota,*,2003
+Oklahoma,*,2003
+Rhode Island,*,2003
+Alabama,*,2003
+South Carolina,*,2003
+Alaska,*,2003
+South Dakota,*,2003
+Arkansas,*,2003
+US Virgin Islands,*,2003
+Delaware,*,2003
+Vermont,*,2003
+District of Columbia,*,2003
+West Virginia,*,2003
+Idaho,*,2003
+Wisconsin,*,2003
+Indiana,*,2003
+Wyoming,*,2003
+Iowa,*,2003
