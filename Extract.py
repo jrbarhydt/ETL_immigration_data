@@ -109,8 +109,14 @@ class ImmigrationData:
 
 
 class DataDotWorld:
-    def __init__(self, dataset='dhs/immigration-statistics-2000', user_id=None):
+    def __init__(self, dataset=None, user_id=None, refresh: bool = True):
         self.name = self.__class__.__name__
+        if dataset is None:
+            dataset = ['dhs/immigration-statistics-{}'.format(year) for year in range(1999, 2016)]
+        if type(dataset) is str:
+            dataset = [dataset]
+
+        self.refresh = refresh
 
         # initialize logfile
         timestamp = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
@@ -130,15 +136,12 @@ class DataDotWorld:
             self.export_token(rd_tkn)
 
         # import dataset
-        self.data_dir = os.path.join(os.path.expanduser('~'), '.dw/cache', dataset)
-        try:
-            self.dataset = dw.load_dataset(dataset)
-        except datapackage.exceptions.DataPackageException as e:
-            logging.debug(e)
-            logging.warning("Unable to parse JSON, attempting to fix encoding.")
-            self.fix_encoding()
-            self.dataset = dw.load_dataset(dataset)
-            logging.warning("JSON Repair Completed.")
+        self.cache_dir = os.path.join(os.path.expanduser('~'), '.dw/cache')
+        self.data_dirs = [os.path.join(self.cache_dir, ds) for ds in dataset]
+
+        # extract datasets, refresh data if needed
+        for ds in dataset:
+            self.dw = self.load_dataset(ds)
 
     @staticmethod
     def configure():
@@ -159,11 +162,23 @@ class DataDotWorld:
             data = json.load(json_data)[user_id]
         return [token['read_tkn'] for token in data['tokens'] if token['site'] == 'data.world'].pop()
 
-    def fix_encoding(self, datapackage_loc=None):
-        if datapackage_loc is None:
-            datapackage_loc = os.path.join(self.data_dir, 'latest', 'datapackage.json')
+    @staticmethod
+    def fix_encoding(datapackage_loc):
         # decode json
         data = json.load(open(datapackage_loc, "r", encoding='utf-8'))
         with open(datapackage_loc, "w") as file_write:
             # write json back into file with standard encoding
             json.dump(data, file_write)
+
+    def load_dataset(self, dataset):
+        try:
+            logging.info("Loading {} from data.world repository.".format(dataset))
+            local_dataset = dw.load_dataset(dataset, force_update=self.refresh)
+        except datapackage.exceptions.DataPackageException as e:
+            logging.debug(e)
+            logging.warning("Unable to parse JSON, attempting to fix encoding.")
+            datapackage_loc = os.path.join(os.path.join(self.cache_dir, dataset, 'latest/datapackage.json'))
+            self.fix_encoding(datapackage_loc)
+            local_dataset = dw.load_dataset(dataset, force_update=False)
+            logging.warning("JSON Repair Completed.")
+        return local_dataset
